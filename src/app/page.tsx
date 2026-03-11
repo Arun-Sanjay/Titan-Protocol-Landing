@@ -1,65 +1,374 @@
-import Image from "next/image";
+import Link from "next/link"
+import type { LucideIcon } from "lucide-react"
+import {
+  Activity,
+  BarChart3,
+  Brain,
+  Check,
+  CircleDollarSign,
+  LayoutDashboard,
+  ShieldCheck,
+  Target,
+  TrendingUp,
+} from "lucide-react"
+
+import { HeroProductMockup, DashboardShowcaseMockup } from "@/components/landing/mockups"
+import { SectionHeading } from "@/components/landing/section-heading"
+import { CheckoutLinkButton } from "@/components/checkout-link-button"
+import { Button } from "@/components/ui/button"
+
+const pillars: Array<{
+  title: string
+  description: string
+  detail: string
+  icon: LucideIcon
+}> = [
+  {
+    title: "Body",
+    description: "Train physical consistency with clear inputs, streak logic, and measurable recovery.",
+    detail: "Performance, sleep, training, weight, and movement in one controlled system.",
+    icon: Activity,
+  },
+  {
+    title: "Mind",
+    description: "Structure thinking with focused routines, review cycles, and deliberate reflection.",
+    detail: "Clarity replaces drift when planning, journaling, and execution live in one place.",
+    icon: Brain,
+  },
+  {
+    title: "Money",
+    description: "Track financial behavior with discipline, not guesswork or fragmented spreadsheets.",
+    detail: "Income, savings, investment habits, and capital goals stay visible every day.",
+    icon: CircleDollarSign,
+  },
+]
+
+const differentiators: Array<{
+  title: string
+  description: string
+  icon: LucideIcon
+}> = [
+  {
+    title: "One operating layer",
+    description: "Titan Protocol OS replaces scattered notes, habit apps, finance tabs, and fragmented dashboards with one system.",
+    icon: Target,
+  },
+  {
+    title: "Built for consistency",
+    description: "Structured cycles, clean tracking, and review rituals turn progress into a repeatable process instead of a mood.",
+    icon: ShieldCheck,
+  },
+  {
+    title: "Offline and owned",
+    description: "No subscription dependency. No cloud-first lock-in. One purchase for a product that stays under your control.",
+    icon: TrendingUp,
+  },
+]
+
+const showcasePoints = [
+  "See consistency across Body, Mind, and Money in one disciplined view.",
+  "Run structured cycles with clean timelines, scorecards, and checkpoints.",
+  "Read momentum instantly through analytics designed for action, not distraction.",
+]
+
+const offerPoints = [
+  "One-time purchase",
+  "Works offline",
+  "Available for Windows and macOS",
+  "Built for long-term compounding",
+]
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <main className="relative overflow-hidden bg-[#050608] text-white">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(148,174,255,0.05),transparent_30%),radial-gradient(circle_at_22%_26%,rgba(255,255,255,0.06),transparent_24%),radial-gradient(circle_at_80%_18%,rgba(255,255,255,0.08),transparent_20%)]" />
+      <div className="absolute inset-x-0 top-0 h-px bg-white/10" />
+      <div className="absolute left-1/2 top-28 h-96 w-96 -translate-x-1/2 rounded-full bg-[rgba(148,174,255,0.04)] blur-[180px]" />
+
+      <div className="relative">
+        <header className="mx-auto flex w-full max-w-7xl items-center justify-between px-6 py-6 sm:px-8 lg:px-12 lg:py-8">
+          <Link
+            href="#top"
+            className="flex items-center gap-3 text-[0.72rem] tracking-[0.24em] text-white/68 uppercase"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+            <span className="flex size-10 items-center justify-center rounded-full border border-white/12 bg-white/[0.03] text-sm font-semibold tracking-normal text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]">
+              T
+            </span>
+            <span>Titan Protocol OS</span>
+          </Link>
+
+          <div className="flex items-center gap-3">
+            <span className="hidden rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 text-[0.68rem] font-medium tracking-[0.16em] text-white/52 uppercase md:inline-flex">
+              Windows + macOS
+            </span>
+            <CheckoutLinkButton className="h-11 px-5 shadow-[0_12px_36px_rgba(255,255,255,0.08),inset_0_1px_0_rgba(255,255,255,0.8)]" />
+          </div>
+        </header>
+
+        <section
+          id="top"
+          data-gsap="hero"
+          className="mx-auto grid min-h-[calc(100svh-88px)] w-full max-w-7xl gap-16 px-6 pb-24 pt-8 sm:px-8 sm:pb-28 lg:grid-cols-[minmax(0,1fr)_minmax(560px,0.96fr)] lg:items-center lg:px-12 lg:pb-40 lg:pt-10"
+        >
+          <div data-gsap="hero-copy" className="max-w-[40rem]">
+            <div className="inline-flex rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 text-[0.72rem] font-medium tracking-[0.18em] text-white/58 uppercase shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]">
+              Personal operating system for discipline
+            </div>
+
+            <h1 className="mt-8 max-w-4xl text-[3.5rem] leading-[0.94] font-semibold tracking-[-0.075em] text-white sm:text-[4.6rem] lg:text-[6.8rem]">
+              Install Discipline.
+            </h1>
+
+            <p className="mt-7 max-w-2xl text-lg leading-8 text-white/62 sm:text-[1.35rem] sm:leading-9">
+              Titan Protocol OS is a personal operating system to track, build, and compound
+              progress across Body, Mind, and Money.
+            </p>
+
+            <div className="mt-11 flex flex-col items-start gap-4">
+              <div className="flex flex-col gap-3 sm:flex-row">
+                <CheckoutLinkButton />
+                <Button
+                  asChild
+                  variant="outline"
+                  size="lg"
+                  className="h-12 rounded-full border-white/10 bg-white/[0.03] px-6 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] hover:bg-white/[0.06]"
+                >
+                  <Link href="#how-it-works">See How It Works</Link>
+                </Button>
+              </div>
+
+              <div className="space-y-1.5 pl-1">
+                <p className="text-sm font-medium text-white/64">
+                  Launch Price: ₹149
+                  <span className="ml-3 text-white/36">Regular Price: ₹699</span>
+                </p>
+                <p className="text-sm text-white/42">
+                  One-time purchase. Lifetime access. Windows + macOS.
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-8 flex items-center gap-3 text-sm text-white/42">
+              <span className="h-px w-12 bg-gradient-to-r from-white/26 to-transparent" />
+              <span>Windows + macOS</span>
+            </div>
+          </div>
+
+          <div data-gsap="hero-visual" className="lg:justify-self-end lg:pl-6">
+            <HeroProductMockup />
+          </div>
+        </section>
+
+        <section className="relative mx-auto w-full max-w-7xl px-6 py-28 sm:px-8 lg:px-12 lg:py-36">
+          <div className="absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent sm:inset-x-8 lg:inset-x-12" />
+          <SectionHeading
+            eyebrow="System"
+            title="Replace motivation with operating logic."
+            description="Titan Protocol OS is designed for people who want a serious structure for progress. It removes noise, centralizes signal, and gives discipline a place to live."
+          />
+
+          <div className="mt-16 grid gap-5 lg:grid-cols-3 lg:gap-6">
+            {pillars.map(({ title, description, detail, icon: Icon }) => (
+              <article
+                key={title}
+                data-gsap="feature-card"
+                className="group rounded-[2.2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02))] p-7 shadow-[0_28px_90px_rgba(0,0,0,0.35)] backdrop-blur sm:p-8"
+              >
+                <div className="flex size-12 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.05] text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]">
+                  <Icon className="size-5" />
+                </div>
+                <h3 className="mt-12 text-[1.9rem] font-semibold tracking-[-0.05em] text-white">
+                  {title}
+                </h3>
+                <p className="mt-4 text-base leading-7 text-white/62">{description}</p>
+                <p className="mt-7 border-t border-white/8 pt-6 text-sm leading-6 text-white/42">
+                  {detail}
+                </p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section
+          id="how-it-works"
+          className="relative mx-auto grid w-full max-w-7xl gap-14 px-6 py-28 sm:px-8 lg:grid-cols-[minmax(0,1.08fr)_minmax(340px,0.8fr)] lg:px-12 lg:py-36"
+        >
+          <div className="absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent sm:inset-x-8 lg:inset-x-12" />
+          <div data-gsap="dashboard-visual">
+            <DashboardShowcaseMockup />
+          </div>
+
+          <div data-gsap="dashboard-copy" className="flex flex-col justify-center lg:pl-4">
+            <SectionHeading
+              eyebrow="Dashboard"
+              title="A clear interface for compounding performance."
+              description="The dashboard is built to show what matters quickly: momentum, consistency, review cycles, and the decisions that move your baseline higher."
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
-  );
+
+            <div className="mt-12 space-y-4">
+              {showcasePoints.map((point) => (
+                <div
+                  key={point}
+                  className="flex items-start gap-4 rounded-[1.6rem] border border-white/10 bg-white/[0.02] p-4 sm:p-5"
+                >
+                  <div className="mt-0.5 flex size-8 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.05]">
+                    <Check className="size-4 text-white/88" />
+                  </div>
+                  <p className="text-sm leading-6 text-white/60 sm:text-base">{point}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-10 grid gap-4 sm:grid-cols-2">
+              <div className="rounded-[1.8rem] border border-white/10 bg-white/[0.03] p-5">
+                <LayoutDashboard className="size-5 text-white/78" />
+                <p className="mt-5 text-[0.72rem] uppercase tracking-[0.18em] text-white/38">Analytics</p>
+                <p className="mt-2 text-xl font-semibold tracking-[-0.045em] text-white">
+                  Clean visibility without clutter
+                </p>
+              </div>
+              <div className="rounded-[1.8rem] border border-white/10 bg-white/[0.03] p-5">
+                <BarChart3 className="size-5 text-white/78" />
+                <p className="mt-5 text-[0.72rem] uppercase tracking-[0.18em] text-white/38">Cycles</p>
+                <p className="mt-2 text-xl font-semibold tracking-[-0.045em] text-white">
+                  Structured cadence for long-term growth
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="relative mx-auto w-full max-w-7xl px-6 py-28 sm:px-8 lg:px-12 lg:py-36">
+          <div className="absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent sm:inset-x-8 lg:inset-x-12" />
+          <div className="grid gap-12 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-start">
+            <div>
+              <SectionHeading
+                eyebrow="Why Titan Protocol"
+                title="Not another stack of disconnected productivity tools."
+                description="Titan Protocol OS is opinionated software for high-performance people who want one disciplined environment instead of ten loosely connected apps."
+              />
+            </div>
+
+            <div className="grid gap-5">
+              {differentiators.map(({ title, description, icon: Icon }) => (
+                <article
+                  key={title}
+                  data-gsap="difference-card"
+                  className="rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.015))] p-6 backdrop-blur sm:p-7"
+                >
+                  <div className="flex items-start gap-4">
+                    <div className="flex size-11 shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.05]">
+                      <Icon className="size-5 text-white/80" />
+                    </div>
+                    <div>
+                      <h3 className="text-[1.45rem] font-semibold tracking-[-0.045em] text-white">
+                        {title}
+                      </h3>
+                      <p className="mt-3 max-w-2xl text-sm leading-6 text-white/58 sm:text-base">
+                        {description}
+                      </p>
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="pricing" className="relative mx-auto w-full max-w-7xl px-6 py-28 sm:px-8 lg:px-12 lg:py-36">
+          <div className="absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent sm:inset-x-8 lg:inset-x-12" />
+          <div className="rounded-[2.8rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.015))] p-8 shadow-[0_36px_120px_rgba(0,0,0,0.46)] backdrop-blur sm:p-10 lg:p-14">
+            <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-end">
+              <div>
+                <div className="inline-flex rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-[0.72rem] font-medium tracking-[0.18em] text-white/54 uppercase">
+                  Launch Offer
+                </div>
+                <h2 className="mt-6 max-w-2xl text-4xl font-semibold tracking-[-0.055em] text-white sm:text-5xl lg:text-6xl">
+                  Own the system once. Use it for the long run.
+                </h2>
+                <p className="mt-6 max-w-2xl text-lg leading-8 text-white/60">
+                  Titan Protocol OS is sold as a one-time purchase for people who want durable
+                  software, offline control, and a serious environment for self-management.
+                </p>
+
+                <div className="mt-12 grid gap-4 sm:grid-cols-2">
+                  {offerPoints.map((point) => (
+                    <div
+                      key={point}
+                      className="flex items-center gap-3 rounded-[1.4rem] border border-white/10 bg-black/20 px-4 py-4"
+                    >
+                      <Check className="size-4 text-white/80" />
+                      <span className="text-sm text-white/62 sm:text-base">{point}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div
+                data-gsap="pricing-card"
+                className="rounded-[2.2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(0,0,0,0.3),rgba(255,255,255,0.03))] p-7 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]"
+              >
+                <p className="text-[0.72rem] uppercase tracking-[0.18em] text-white/40">Titan Protocol OS</p>
+                <div className="mt-6">
+                  <p className="text-5xl font-semibold tracking-[-0.06em] text-white">
+                    ₹149
+                  </p>
+                  <p className="mt-2 text-sm font-medium text-white/58">Launch Price</p>
+                  <p className="mt-2 text-sm text-white/38">Regular Price: ₹699</p>
+                </div>
+
+                <div className="mt-8 rounded-[1.7rem] border border-white/10 bg-white/[0.03] p-5">
+                  <p className="text-sm leading-6 text-white/58">
+                    Includes the core Titan workspace, discipline dashboard, tracking cycles, and
+                    future product refinements under the launch offer.
+                  </p>
+                </div>
+
+                <CheckoutLinkButton className="mt-8 w-full shadow-[0_18px_40px_rgba(255,255,255,0.08),inset_0_1px_0_rgba(255,255,255,0.85)]" />
+
+                <p className="mt-4 text-center text-xs tracking-[0.12em] text-white/40 uppercase">
+                  Windows and macOS
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="relative mx-auto w-full max-w-5xl px-6 pb-28 pt-10 text-center sm:px-8 lg:pb-36">
+          <div className="absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent sm:inset-x-8" />
+          <div className="rounded-[2.8rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02))] px-6 py-16 shadow-[0_28px_120px_rgba(0,0,0,0.35)] backdrop-blur sm:px-10 lg:px-14 lg:py-24">
+            <p className="text-[0.72rem] uppercase tracking-[0.2em] text-white/38">Titan Protocol OS</p>
+            <h2 className="mx-auto mt-6 max-w-4xl text-4xl font-semibold tracking-[-0.06em] text-white sm:text-5xl lg:text-[4.2rem]">
+              Build a system that keeps working when motivation does not.
+            </h2>
+            <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-white/58">
+              Install a disciplined operating environment for Body, Mind, and Money, then let
+              progress compound.
+            </p>
+
+            <div className="mt-11 flex flex-col items-center justify-center gap-3 sm:flex-row">
+              <CheckoutLinkButton />
+              <Button
+                asChild
+                variant="outline"
+                size="lg"
+                className="h-12 rounded-full border-white/10 bg-white/[0.03] px-6 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] hover:bg-white/[0.06]"
+              >
+                <Link href="#how-it-works">Review the Interface</Link>
+              </Button>
+            </div>
+          </div>
+        </section>
+
+        <footer className="mx-auto flex w-full max-w-7xl flex-col gap-4 border-t border-white/8 px-6 py-8 text-sm text-white/34 sm:flex-row sm:items-center sm:justify-between sm:px-8 lg:px-12">
+          <p>Titan Protocol OS</p>
+          <div className="flex items-center gap-4">
+            <span>Install Discipline.</span>
+            <span className="text-white/18">/</span>
+            <span>Windows + macOS</span>
+          </div>
+        </footer>
+      </div>
+    </main>
+  )
 }
