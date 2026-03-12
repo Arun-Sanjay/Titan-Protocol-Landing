@@ -7,11 +7,25 @@ import {
 } from "@/lib/titan"
 
 function getRazorpaySecret() {
-  return process.env.RAZORPAY_KEY_SECRET || "U1XZhqsS0U0nn2K1Dge8rfJB"
+  const secret = process.env.RAZORPAY_KEY_SECRET
+
+  if (!secret) {
+    throw new Error("Missing RAZORPAY_KEY_SECRET.")
+  }
+
+  return secret
+}
+
+function getRazorpayKeyId() {
+  if (!TITAN_RAZORPAY_KEY_ID) {
+    throw new Error("Missing NEXT_PUBLIC_RAZORPAY_KEY_ID.")
+  }
+
+  return TITAN_RAZORPAY_KEY_ID
 }
 
 export async function POST() {
-  const auth = Buffer.from(`${TITAN_RAZORPAY_KEY_ID}:${getRazorpaySecret()}`).toString("base64")
+  const auth = Buffer.from(`${getRazorpayKeyId()}:${getRazorpaySecret()}`).toString("base64")
 
   const response = await fetch("https://api.razorpay.com/v1/orders", {
     method: "POST",

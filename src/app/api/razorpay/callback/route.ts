@@ -8,12 +8,10 @@ import {
 } from "@/lib/download-access"
 
 function getRazorpaySecret() {
-  const secret = process.env.RAZORPAY_KEY_SECRET || "U1XZhqsS0U0nn2K1Dge8rfJB"
+  const secret = process.env.RAZORPAY_KEY_SECRET
 
   if (!secret) {
-    throw new Error(
-      "Missing RAZORPAY_KEY_SECRET. Razorpay callback verification requires your Razorpay secret."
-    )
+    throw new Error("Missing RAZORPAY_KEY_SECRET.")
   }
 
   return secret

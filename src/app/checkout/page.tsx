@@ -28,6 +28,8 @@ const includedItems = [
 ]
 
 const productSummary = [
+  { label: "Price", value: TITAN_PRICE },
+  { label: "Offer", value: "Launch price" },
   { label: "Version", value: TITAN_VERSION },
   { label: "Delivery", value: "Instant download" },
   { label: "License", value: TITAN_LICENSE },
@@ -155,6 +157,24 @@ export default function CheckoutPage() {
                 Product summary
               </p>
 
+              <div className="mt-5 rounded-[1.6rem] border border-white/10 bg-white/[0.03] p-5">
+                <p className="text-[0.68rem] font-medium tracking-[0.18em] text-white/40 uppercase">
+                  Payment
+                </p>
+                <div className="mt-3 flex items-end justify-between gap-4">
+                  <div>
+                    <p className="text-4xl font-semibold tracking-[-0.05em] text-white">
+                      {TITAN_PRICE}
+                    </p>
+                    <p className="mt-2 text-sm text-white/58">{TITAN_LAUNCH_NOTE}</p>
+                  </div>
+                  <p className="text-sm text-white/34 line-through">{TITAN_REGULAR_PRICE}</p>
+                </div>
+                <p className="mt-4 text-sm leading-6 text-white/48">
+                  One-time payment processed securely by Razorpay.
+                </p>
+              </div>
+
               <div className="mt-5 space-y-4">
                 {productSummary.map(({ label, value }) => (
                   <div
@@ -167,7 +187,13 @@ export default function CheckoutPage() {
                 ))}
               </div>
 
-              <PaymentButton className="mt-8 w-full" label="Pay Now" />
+              <div className="mt-8 flex justify-center">
+                <PaymentButton />
+              </div>
+
+              <p className="mt-5 text-center text-xs tracking-[0.12em] text-white/36 uppercase">
+                Secure checkout • Instant access
+              </p>
             </div>
 
             <div className="rounded-[2rem] border border-white/10 bg-white/[0.03] p-6">
@@ -176,10 +202,10 @@ export default function CheckoutPage() {
                   <ShieldCheck className="size-5 text-white/78" />
                 </div>
                 <div>
-                  <p className="font-medium text-white">Instant access after payment</p>
+                  <p className="font-medium text-white">Official checkout</p>
                   <p className="mt-2 text-sm leading-6 text-white/52">
-                    Once Razorpay confirms payment, redirect the user to `/download` so they can
-                    access the build immediately.
+                    Your purchase is processed securely, then access is unlocked immediately for
+                    your Windows and macOS downloads.
                   </p>
                 </div>
               </div>

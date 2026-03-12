@@ -8,7 +8,13 @@ import {
 } from "@/lib/download-access"
 
 function getRazorpaySecret() {
-  return process.env.RAZORPAY_KEY_SECRET || "U1XZhqsS0U0nn2K1Dge8rfJB"
+  const secret = process.env.RAZORPAY_KEY_SECRET
+
+  if (!secret) {
+    throw new Error("Missing RAZORPAY_KEY_SECRET.")
+  }
+
+  return secret
 }
 
 export async function POST(request: Request) {

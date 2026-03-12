@@ -11,15 +11,10 @@ export const DOWNLOAD_ACCESS_COOKIE = "titan_download_access"
 const DOWNLOAD_ACCESS_TTL_SECONDS = 60 * 60
 
 function getSessionSecret() {
-  const secret =
-    process.env.DOWNLOAD_SESSION_SECRET ||
-    process.env.RAZORPAY_KEY_SECRET ||
-    "U1XZhqsS0U0nn2K1Dge8rfJB"
+  const secret = process.env.DOWNLOAD_SESSION_SECRET || process.env.RAZORPAY_KEY_SECRET
 
   if (!secret) {
-    throw new Error(
-      "Missing DOWNLOAD_SESSION_SECRET or RAZORPAY_KEY_SECRET. A server-side secret is required to protect Titan downloads."
-    )
+    throw new Error("Missing DOWNLOAD_SESSION_SECRET or RAZORPAY_KEY_SECRET.")
   }
 
   return secret
