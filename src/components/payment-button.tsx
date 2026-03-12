@@ -79,7 +79,10 @@ export function PaymentButton({
       })
 
       if (!response.ok) {
-        throw new Error("Unable to initialize payment.")
+        const data = await response.json().catch(() => ({}))
+        throw new Error(
+          (data as { error?: string }).error || "Unable to initialize payment."
+        )
       }
 
       const order = (await response.json()) as {

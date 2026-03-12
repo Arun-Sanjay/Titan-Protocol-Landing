@@ -25,34 +25,53 @@ function getRazorpayKeyId() {
 }
 
 export async function POST() {
-  const auth = Buffer.from(`${getRazorpayKeyId()}:${getRazorpaySecret()}`).toString("base64")
+  try {
+    const auth = Buffer.from(`${getRazorpayKeyId()}:${getRazorpaySecret()}`).toString("base64")
 
-  const response = await fetch("https://api.razorpay.com/v1/orders", {
-    method: "POST",
-    headers: {
-      Authorization: `Basic ${auth}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      amount: TITAN_PRICE_PAISE,
-      currency: "INR",
-      receipt: `titan_${Date.now()}`,
-      notes: {
-        product: TITAN_PRODUCT_NAME,
+    const response = await fetch("https://api.razorpay.com/v1/orders", {
+      method: "POST",
+      headers: {
+        Authorization: `Basic ${auth}`,
+        "Content-Type": "application/json",
       },
-    }),
-    cache: "no-store",
-  })
+      body: JSON.stringify({
+        amount: TITAN_PRICE_PAISE,
+        currency: "INR",
+        receipt: `titan_${Date.now()}`,
+        notes: {
+          product: TITAN_PRODUCT_NAME,
+        },
+      }),
+      cache: "no-store",
+    })
 
-  if (!response.ok) {
-    return NextResponse.json({ error: "Unable to create Razorpay order." }, { status: 500 })
+    if (!response.ok) {
+      const errorData = (await response.json().catch(() => null)) as
+        | { error?: { description?: string } }
+        | null
+
+      return NextResponse.json(
+        {
+          error:
+            errorData?.error?.description || "Unable to create Razorpay order.",
+        },
+        { status: response.status }
+      )
+    }
+
+    const order = await response.json()
+
+    return NextResponse.json({
+      id: order.id as string,
+      amount: order.amount as number,
+      currency: order.currency as string,
+    })
+  } catch (error) {
+    return NextResponse.json(
+      {
+        error: error instanceof Error ? error.message : "Unable to create Razorpay order.",
+      },
+      { status: 500 }
+    )
   }
-
-  const order = await response.json()
-
-  return NextResponse.json({
-    id: order.id as string,
-    amount: order.amount as number,
-    currency: order.currency as string,
-  })
 }
