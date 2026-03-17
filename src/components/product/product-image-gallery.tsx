@@ -38,7 +38,7 @@ export function ProductImageGallery() {
   return (
     <div className="flex flex-col gap-4">
       {/* Main image with arrows */}
-      <div className="group relative aspect-[147/92] w-full overflow-hidden rounded-[2.2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.015))] shadow-[0_28px_90px_rgba(0,0,0,0.35)]">
+      <div className="group relative aspect-[147/92] w-full overflow-hidden rounded-[1.2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.015))] shadow-[0_28px_90px_rgba(0,0,0,0.35)] sm:rounded-[2.2rem]">
         {failedImages[selectedIndex] ? (
           <div className="flex h-full w-full items-center justify-center">
             <div className="text-center">
@@ -65,7 +65,7 @@ export function ProductImageGallery() {
         {/* Left arrow */}
         <button
           onClick={goToPrev}
-          className="absolute left-3 top-1/2 flex size-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-black/60 text-white/70 opacity-0 backdrop-blur-sm transition-opacity hover:bg-black/80 hover:text-white group-hover:opacity-100"
+          className="absolute left-2 top-1/2 flex size-8 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-black/60 text-white/70 opacity-100 backdrop-blur-sm transition-opacity hover:bg-black/80 hover:text-white sm:left-3 sm:size-10 sm:opacity-0 sm:group-hover:opacity-100"
         >
           <ChevronLeft className="size-5" />
         </button>
@@ -73,20 +73,20 @@ export function ProductImageGallery() {
         {/* Right arrow */}
         <button
           onClick={goToNext}
-          className="absolute right-3 top-1/2 flex size-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-black/60 text-white/70 opacity-0 backdrop-blur-sm transition-opacity hover:bg-black/80 hover:text-white group-hover:opacity-100"
+          className="absolute right-2 top-1/2 flex size-8 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-black/60 text-white/70 opacity-100 backdrop-blur-sm transition-opacity hover:bg-black/80 hover:text-white sm:right-3 sm:size-10 sm:opacity-0 sm:group-hover:opacity-100"
         >
           <ChevronRight className="size-5" />
         </button>
       </div>
 
       {/* Thumbnail strip */}
-      <div className="flex gap-3 overflow-x-auto pb-1">
+      <div className="flex gap-2 overflow-x-auto pb-1 sm:gap-3">
         {TITAN_PRODUCT_IMAGES.map((image, index) => (
           <button
             key={image.src}
             onClick={() => setSelectedIndex(index)}
             className={cn(
-              "relative aspect-[147/92] w-20 shrink-0 overflow-hidden rounded-xl border transition-all sm:w-24",
+              "relative aspect-[147/92] w-14 shrink-0 overflow-hidden rounded-lg border transition-all sm:w-24 sm:rounded-xl",
               index === selectedIndex
                 ? "border-white/40 shadow-[0_0_12px_rgba(255,255,255,0.1)]"
                 : "border-white/10 opacity-60 hover:opacity-90"

@@ -88,35 +88,35 @@ export default function Home() {
       <div className="absolute left-1/2 top-28 h-96 w-96 -translate-x-1/2 rounded-full bg-[rgba(148,174,255,0.04)] blur-[180px]" />
 
       <div className="relative">
-        <header className="mx-auto flex w-full max-w-7xl items-center justify-between px-6 py-6 sm:px-8 lg:px-12 lg:py-8">
+        <header className="mx-auto flex w-full max-w-7xl items-center justify-between gap-3 px-4 py-5 sm:px-8 lg:px-12 lg:py-8">
           <Link
             href="#top"
-            className="flex items-center gap-3 text-[0.72rem] tracking-[0.24em] text-white/68 uppercase"
+            className="flex shrink-0 items-center gap-2 text-[0.72rem] tracking-[0.24em] text-white/68 uppercase sm:gap-3"
           >
-            <span className="flex size-10 items-center justify-center rounded-full border border-white/12 bg-white/[0.03] text-sm font-semibold tracking-normal text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]">
+            <span className="flex size-9 items-center justify-center rounded-full border border-white/12 bg-white/[0.03] text-sm font-semibold tracking-normal text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] sm:size-10">
               T
             </span>
-            <span>Titan Protocol OS</span>
+            <span className="hidden sm:inline">Titan Protocol OS</span>
           </Link>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3">
             <span className="hidden rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 text-[0.68rem] font-medium tracking-[0.16em] text-white/52 uppercase md:inline-flex">
               Windows + macOS
             </span>
-            <CheckoutLinkButton className="h-11 px-5 shadow-[0_12px_36px_rgba(255,255,255,0.08),inset_0_1px_0_rgba(255,255,255,0.8)]" />
+            <CheckoutLinkButton className="h-10 px-4 text-sm shadow-[0_12px_36px_rgba(255,255,255,0.08),inset_0_1px_0_rgba(255,255,255,0.8)] sm:h-11 sm:px-5" />
           </div>
         </header>
 
         <section
           id="top"
-          className="mx-auto grid w-full max-w-7xl gap-10 px-6 py-12 sm:px-8 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:items-start lg:gap-14 lg:px-12 lg:py-16"
+          className="mx-auto grid w-full max-w-7xl gap-8 px-4 py-8 sm:gap-10 sm:px-8 sm:py-12 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:items-start lg:gap-14 lg:px-12 lg:py-16"
         >
           <ProductImageGallery />
           <ProductBuyBox />
         </section>
 
-        <section className="relative mx-auto w-full max-w-7xl px-6 py-28 sm:px-8 lg:px-12 lg:py-36">
-          <div className="absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent sm:inset-x-8 lg:inset-x-12" />
+        <section className="relative mx-auto w-full max-w-7xl px-4 py-20 sm:px-8 sm:py-28 lg:px-12 lg:py-36">
+          <div className="absolute inset-x-4 top-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent sm:inset-x-8 lg:inset-x-12" />
           <SectionHeading
             eyebrow="System"
             title="Replace motivation with operating logic."
@@ -147,7 +147,7 @@ export default function Home() {
 
         <section
           id="how-it-works"
-          className="relative mx-auto grid w-full max-w-7xl gap-14 px-6 py-28 sm:px-8 lg:grid-cols-[minmax(0,1.08fr)_minmax(340px,0.8fr)] lg:px-12 lg:py-36"
+          className="relative mx-auto grid w-full max-w-7xl gap-14 px-4 py-20 sm:px-8 sm:py-28 lg:grid-cols-[minmax(0,1.08fr)_minmax(340px,0.8fr)] lg:px-12 lg:py-36"
         >
           <div className="absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent sm:inset-x-8 lg:inset-x-12" />
           <div data-gsap="dashboard-visual">
@@ -194,8 +194,8 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="relative mx-auto w-full max-w-7xl px-6 py-28 sm:px-8 lg:px-12 lg:py-36">
-          <div className="absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent sm:inset-x-8 lg:inset-x-12" />
+        <section className="relative mx-auto w-full max-w-7xl px-4 py-20 sm:px-8 sm:py-28 lg:px-12 lg:py-36">
+          <div className="absolute inset-x-4 top-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent sm:inset-x-8 lg:inset-x-12" />
           <div className="grid gap-12 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-start">
             <div>
               <SectionHeading
@@ -231,9 +231,9 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="pricing" className="relative mx-auto w-full max-w-7xl px-6 py-28 sm:px-8 lg:px-12 lg:py-36">
-          <div className="absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent sm:inset-x-8 lg:inset-x-12" />
-          <div className="rounded-[2.8rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.015))] p-8 shadow-[0_36px_120px_rgba(0,0,0,0.46)] backdrop-blur sm:p-10 lg:p-14">
+        <section id="pricing" className="relative mx-auto w-full max-w-7xl px-4 py-20 sm:px-8 sm:py-28 lg:px-12 lg:py-36">
+          <div className="absolute inset-x-4 top-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent sm:inset-x-8 lg:inset-x-12" />
+          <div className="rounded-[1.8rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.015))] p-5 shadow-[0_36px_120px_rgba(0,0,0,0.46)] backdrop-blur sm:rounded-[2.8rem] sm:p-10 lg:p-14">
             <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-end">
               <div>
                 <div className="inline-flex rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-[0.72rem] font-medium tracking-[0.18em] text-white/54 uppercase">
@@ -290,9 +290,9 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="relative mx-auto w-full max-w-5xl px-6 pb-28 pt-10 text-center sm:px-8 lg:pb-36">
-          <div className="absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent sm:inset-x-8" />
-          <div className="rounded-[2.8rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02))] px-6 py-16 shadow-[0_28px_120px_rgba(0,0,0,0.35)] backdrop-blur sm:px-10 lg:px-14 lg:py-24">
+        <section className="relative mx-auto w-full max-w-5xl px-4 pb-20 pt-10 text-center sm:px-8 sm:pb-28 lg:pb-36">
+          <div className="absolute inset-x-4 top-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent sm:inset-x-8" />
+          <div className="rounded-[1.8rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02))] px-4 py-12 shadow-[0_28px_120px_rgba(0,0,0,0.35)] backdrop-blur sm:rounded-[2.8rem] sm:px-10 sm:py-16 lg:px-14 lg:py-24">
             <p className="text-[0.72rem] uppercase tracking-[0.2em] text-white/38">Titan Protocol OS</p>
             <h2 className="mx-auto mt-6 max-w-4xl text-4xl font-semibold tracking-[-0.06em] text-white sm:text-5xl lg:text-[4.2rem]">
               Build a system that keeps working when motivation does not.
@@ -316,7 +316,7 @@ export default function Home() {
           </div>
         </section>
 
-        <footer className="mx-auto flex w-full max-w-7xl flex-col gap-4 border-t border-white/8 px-6 py-8 text-sm text-white/34 sm:flex-row sm:items-center sm:justify-between sm:px-8 lg:px-12">
+        <footer className="mx-auto flex w-full max-w-7xl flex-col gap-4 border-t border-white/8 px-4 py-8 text-sm text-white/34 sm:flex-row sm:items-center sm:justify-between sm:px-8 lg:px-12">
           <p>Titan Protocol OS</p>
           <div className="flex items-center gap-4">
             <span>Install Discipline.</span>
