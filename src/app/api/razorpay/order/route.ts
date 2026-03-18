@@ -35,7 +35,7 @@ export async function POST() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        amount: TITAN_PRICE_PAISE,
+        amount: 100, // TODO: change back to TITAN_PRICE_PAISE after testing
         currency: "INR",
         receipt: `titan_${Date.now()}`,
         notes: {

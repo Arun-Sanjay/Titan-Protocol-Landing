@@ -2,8 +2,6 @@
 
 import { useState } from "react"
 import { ArrowRight } from "lucide-react"
-import { useRouter } from "next/navigation"
-
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { TITAN_RAZORPAY_KEY_ID } from "@/lib/titan"
@@ -54,8 +52,6 @@ export function PaymentButton({
 }: PaymentButtonProps) {
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState("")
-  const router = useRouter()
-
   async function handleClick() {
     setError("")
     setIsLoading(true)
@@ -121,7 +117,7 @@ export function PaymentButton({
               )
             }
 
-            router.push("/download")
+            window.location.href = "/download"
           } catch (err) {
             setError(err instanceof Error ? err.message : "Verification failed.")
             setIsLoading(false)
