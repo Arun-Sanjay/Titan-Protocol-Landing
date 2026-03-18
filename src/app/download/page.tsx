@@ -3,16 +3,16 @@ import { Download, Monitor, MonitorCog, ShieldCheck } from "lucide-react"
 import { cookies } from "next/headers"
 import { redirect } from "next/navigation"
 
-import { SoftwarePreviewPanel } from "@/components/software-preview-panel"
 import { Button } from "@/components/ui/button"
 import { DOWNLOAD_ACCESS_COOKIE, verifyDownloadAccessToken } from "@/lib/download-access"
 import {
-  TITAN_MAC_DOWNLOAD_PATH,
   TITAN_PRODUCT_NAME,
   TITAN_SUPPORT_NOTE,
   TITAN_TAGLINE,
-  TITAN_WINDOWS_DOWNLOAD_PATH,
 } from "@/lib/titan"
+
+const GITHUB_RELEASE_WINDOWS = "https://github.com/Arun-Sanjay/Titan-Protocol/releases/download/v0.1.0/TitanOS.Windows.exe"
+const GITHUB_RELEASE_MAC = "https://github.com/Arun-Sanjay/Titan-Protocol/releases/download/v0.1.0/Titan.Protocol.Mac.dmg"
 
 const installSteps = [
   {
@@ -28,12 +28,12 @@ const installSteps = [
 const downloadOptions = [
   {
     title: "Download for Windows",
-    href: TITAN_WINDOWS_DOWNLOAD_PATH,
+    href: GITHUB_RELEASE_WINDOWS,
     icon: Monitor,
   },
   {
     title: "Download for macOS",
-    href: TITAN_MAC_DOWNLOAD_PATH,
+    href: GITHUB_RELEASE_MAC,
     icon: MonitorCog,
   },
 ]
@@ -73,8 +73,7 @@ export default async function DownloadPage() {
           </Button>
         </header>
 
-        <section className="mt-12 grid gap-8 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:items-center">
-          <div className="max-w-2xl">
+        <section className="mx-auto mt-12 max-w-2xl">
             <div className="inline-flex rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 text-[0.72rem] font-medium tracking-[0.18em] text-white/58 uppercase">
               Download
             </div>
@@ -143,9 +142,6 @@ export default async function DownloadPage() {
                 </div>
               </div>
             </div>
-          </div>
-
-          <SoftwarePreviewPanel label="Preview" />
         </section>
       </div>
     </main>
