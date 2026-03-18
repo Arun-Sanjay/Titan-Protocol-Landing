@@ -12,6 +12,10 @@ export const TITAN_RAZORPAY_CALLBACK_PATH = "/api/razorpay/callback"
 export const TITAN_WINDOWS_DOWNLOAD_PATH = "/api/download/windows"
 export const TITAN_MAC_DOWNLOAD_PATH = "/api/download/macos"
 
+// Google Drive download links — replace these with your actual share links
+export const TITAN_WINDOWS_DRIVE_URL = "https://drive.google.com/YOUR_WINDOWS_LINK"
+export const TITAN_MAC_DRIVE_URL = "https://drive.google.com/YOUR_MACOS_LINK"
+
 export const TITAN_WINDOWS_PRIVATE_FILENAME = "TitanOS.exe"
 export const TITAN_MAC_PRIVATE_FILENAME = "TitanOS.dmg"
 
