@@ -1,9 +1,9 @@
 export const TITAN_PRODUCT_NAME = "Titan Protocol OS"
 export const TITAN_TAGLINE = "A personal operating system for discipline."
 export const TITAN_PRICE = "₹149"
-export const TITAN_PRICE_PAISE = 14900
+export const TITAN_PRICE_PAISE = 100
 export const TITAN_REGULAR_PRICE = "₹699"
-export const TITAN_LAUNCH_NOTE = "Launch price — first 5 users"
+export const TITAN_LAUNCH_NOTE = "Launch price"
 export const TITAN_TRUST_LINE = "One-time purchase • Instant download • Windows + macOS"
 export const TITAN_RAZORPAY_KEY_ID = process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID || ""
 

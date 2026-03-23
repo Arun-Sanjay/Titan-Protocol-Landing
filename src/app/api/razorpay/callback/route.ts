@@ -95,7 +95,7 @@ async function handleCallback(request: Request) {
     return NextResponse.redirect(new URL("/checkout?payment=invalid", request.url))
   }
 
-  const response = NextResponse.redirect(new URL("/download", request.url))
+  const response = NextResponse.redirect("https://drive.google.com/drive/folders/1DIZExVScul9rQK1w7fnkfkYK33V58bbX?usp=sharing")
 
   response.cookies.set({
     name: DOWNLOAD_ACCESS_COOKIE,

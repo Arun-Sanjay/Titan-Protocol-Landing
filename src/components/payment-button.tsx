@@ -117,7 +117,7 @@ export function PaymentButton({
               )
             }
 
-            window.location.href = "/download"
+            window.location.href = "https://drive.google.com/drive/folders/1DIZExVScul9rQK1w7fnkfkYK33V58bbX?usp=sharing"
           } catch (err) {
             setError(err instanceof Error ? err.message : "Verification failed.")
             setIsLoading(false)
