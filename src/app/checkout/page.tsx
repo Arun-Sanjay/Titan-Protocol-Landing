@@ -19,7 +19,7 @@ import {
 
 const includedItems = [
   "Lifetime access",
-  "Windows + macOS build",
+  "Windows + macOS + Android build",
   "Instant digital delivery",
   "Clean local-first experience",
 ]
@@ -111,7 +111,7 @@ export default function CheckoutPage() {
                   <p className="font-medium text-white">Official checkout</p>
                   <p className="mt-2 text-sm leading-6 text-white/52">
                     Your purchase is processed securely, then access is unlocked immediately for
-                    your Windows and macOS downloads.
+                    your Windows, macOS, and Android downloads.
                   </p>
                 </div>
               </div>

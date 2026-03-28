@@ -76,7 +76,7 @@ const showcasePoints = [
 const offerPoints = [
   "One-time purchase",
   "Works offline",
-  "Available for Windows and macOS",
+  "Available for Windows, macOS, and Android",
   "Built for long-term compounding",
 ]
 
@@ -101,7 +101,7 @@ export default function Home() {
 
           <div className="flex items-center gap-2 sm:gap-3">
             <span className="hidden rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 text-[0.68rem] font-medium tracking-[0.16em] text-white/52 uppercase md:inline-flex">
-              Windows + macOS
+              Windows + macOS + Android
             </span>
             <CheckoutLinkButton className="h-10 px-4 text-sm shadow-[0_12px_36px_rgba(255,255,255,0.08),inset_0_1px_0_rgba(255,255,255,0.8)] sm:h-11 sm:px-5" />
           </div>
@@ -283,7 +283,7 @@ export default function Home() {
                 <CheckoutLinkButton className="mt-8 w-full shadow-[0_18px_40px_rgba(255,255,255,0.08),inset_0_1px_0_rgba(255,255,255,0.85)]" />
 
                 <p className="mt-4 text-center text-xs tracking-[0.12em] text-white/40 uppercase">
-                  Windows and macOS
+                  Windows, macOS, and Android
                 </p>
               </div>
             </div>
@@ -321,7 +321,7 @@ export default function Home() {
           <div className="flex items-center gap-4">
             <span>Install Discipline.</span>
             <span className="text-white/18">/</span>
-            <span>Windows + macOS</span>
+            <span>Windows + macOS + Android</span>
           </div>
         </footer>
       </div>

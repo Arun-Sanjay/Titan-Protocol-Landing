@@ -47,7 +47,7 @@ export function ProductBuyBox() {
       {/* Platform badge */}
       <div className="mt-5 flex items-center gap-2">
         <Monitor className="size-4 text-white/52" />
-        <span className="text-sm text-white/52">Windows + macOS</span>
+        <span className="text-sm text-white/52">Windows + macOS + Android</span>
       </div>
 
       {/* Key features */}

@@ -4,7 +4,7 @@ export const TITAN_PRICE = "₹149"
 export const TITAN_PRICE_PAISE = 14900
 export const TITAN_REGULAR_PRICE = "₹699"
 export const TITAN_LAUNCH_NOTE = "Launch price"
-export const TITAN_TRUST_LINE = "One-time purchase • Instant download • Windows + macOS"
+export const TITAN_TRUST_LINE = "One-time purchase • Instant download • Windows + macOS + Android"
 export const TITAN_RAZORPAY_KEY_ID = process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID || ""
 
 export const TITAN_RAZORPAY_CALLBACK_PATH = "/api/razorpay/callback"
@@ -30,7 +30,7 @@ export const TITAN_PRODUCT_IMAGES = [
 export const TITAN_KEY_FEATURES = [
   "One-time purchase — lifetime access",
   "Works offline, no subscription required",
-  "Windows + macOS included",
+  "Windows + macOS + Android included",
   "Instant digital delivery after payment",
   "Built for long-term compounding",
 ]
