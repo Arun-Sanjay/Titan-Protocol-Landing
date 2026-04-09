@@ -84,6 +84,8 @@ export default function HeroProcessFlow() {
 
   // === Mobile sticky scroll progress ===
   // Drives the screen swap + caption swap on mobile/tablet only.
+  // The container is 480vh tall so scrollable distance ≈ 380vh, giving ~95vh
+  // per state. A normal mobile fling can't blow through all 4 states at once.
   const { scrollYProgress: mobileProgress } = useScroll({
     target: mobileRef,
     offset: ["start start", "end end"],
@@ -91,10 +93,11 @@ export default function HeroProcessFlow() {
 
   useEffect(() => {
     const unsubscribe = mobileProgress.on("change", (latest) => {
+      // Clean quartile splits — each state owns exactly 25% of the runway.
       let next = 0;
-      if (latest >= 0.78) next = 3;
-      else if (latest >= 0.54) next = 2;
-      else if (latest >= 0.28) next = 1;
+      if (latest >= 0.75) next = 3;
+      else if (latest >= 0.5) next = 2;
+      else if (latest >= 0.25) next = 1;
       setMobileActive((current) => (current === next ? current : next));
     });
     return unsubscribe;
@@ -164,8 +167,7 @@ export default function HeroProcessFlow() {
     <section
       ref={containerRef}
       id="top"
-      className="relative w-full"
-      style={{ minHeight: "440vh" }}
+      className="relative w-full lg:min-h-[440vh]"
     >
       {/* === HERO TEXT — normal flow at top === */}
       <motion.div
@@ -408,27 +410,34 @@ export default function HeroProcessFlow() {
       </div>
 
       {/* === MOBILE / TABLET — sticky single phone with synced screen + caption swap ===
-       * One phone stays glued to the top of the viewport while the user scrolls.
-       * The screen inside swaps between Dashboard → Archetype → Protocol → Rank,
-       * and the caption text below the phone slides horizontally on each swap.
-       * Driven entirely by `mobileProgress` (a useScroll on the outer container).
+       *
+       * Design notes (mobile-specific, do NOT mirror desktop):
+       *   - 480vh container → ≈380vh of scrollable runway → ~95vh per state.
+       *     A typical mobile fling (~150vh) advances ~1 state, never the
+       *     whole sequence in one swipe.
+       *   - AnimatePresence WITHOUT mode="wait" → exit + enter overlap, so
+       *     rapid scroll doesn't queue up a stop-and-go animation chain.
+       *   - All transitions use absolute-positioned children inside fixed-
+       *     height parents, so cross-fading layers never cause layout jumps.
+       *   - Sticky element is pointer-events-none so the user can scroll the
+       *     page anywhere on the phone area without intercepting touches.
        */}
       <div
         ref={mobileRef}
         className="lg:hidden relative"
-        style={{ minHeight: "320vh" }}
+        style={{ minHeight: "480vh" }}
       >
         <div className="sticky top-20 flex flex-col items-center pt-2 pointer-events-none">
-          {/* Single phone — screen swaps via AnimatePresence */}
+          {/* Single phone — screens crossfade via AnimatePresence */}
           <div className="relative w-[180px] xs:w-[195px] sm:w-[215px] will-change-transform">
             <PhoneMockup>
-              <AnimatePresence mode="wait">
+              <AnimatePresence>
                 <motion.div
                   key={mobileActive}
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
-                  transition={{ duration: 0.4, ease: "easeOut" }}
+                  transition={{ duration: 0.45, ease: "easeOut" }}
                   className="absolute inset-0 will-change-transform"
                 >
                   {mobileActive === 0 && <DashboardScreen device="phone" />}
@@ -441,15 +450,15 @@ export default function HeroProcessFlow() {
           </div>
 
           {/* Caption — slides in from the right, exits to the left */}
-          <div className="relative mt-7 h-[170px] w-full overflow-hidden">
-            <AnimatePresence mode="wait">
+          <div className="relative mt-7 h-[180px] w-full overflow-hidden">
+            <AnimatePresence>
               <motion.div
                 key={mobileActive}
                 initial={{ opacity: 0, x: 60 }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -60 }}
-                transition={{ duration: 0.55, ease: titanEase }}
-                className="absolute inset-x-6 text-center will-change-transform pointer-events-auto"
+                transition={{ duration: 0.6, ease: titanEase }}
+                className="absolute inset-x-6 text-center will-change-transform"
               >
                 <p
                   className="font-sans text-[12px] font-semibold text-white/45"
