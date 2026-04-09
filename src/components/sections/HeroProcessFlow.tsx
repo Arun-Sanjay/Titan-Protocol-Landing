@@ -36,6 +36,31 @@ const steps = [
   },
 ];
 
+// Mobile-only caption deck — same content as desktop steps, plus an "OS"
+// intro state shown while the dashboard mockup is on screen.
+const mobileSteps = [
+  {
+    label: "TITAN OS",
+    title: "Your performance OS.",
+    body: "Four engines — Body, Mind, Money, Charisma. One Titan Score that captures every day across them all.",
+  },
+  {
+    label: "STEP 01",
+    title: "Select your identity",
+    body: "Eight archetypes calibrate the scoring system to match the kind of year you're trying to build.",
+  },
+  {
+    label: "STEP 02",
+    title: "Run the daily protocol",
+    body: "Morning sets your intention. Evening reveals your Titan Score. Every day is scored — no days off.",
+  },
+  {
+    label: "STEP 03",
+    title: "Ascend the ranks",
+    body: "Eight tiers from Initiate to Titan. Your rank reflects consistency and average score over time.",
+  },
+];
+
 export default function HeroProcessFlow() {
   const router = useRouter();
   const containerRef = useRef<HTMLElement>(null);
@@ -43,6 +68,10 @@ export default function HeroProcessFlow() {
   const step1Ref = useRef<HTMLDivElement>(null);
   const step2Ref = useRef<HTMLDivElement>(null);
   const step3Ref = useRef<HTMLDivElement>(null);
+
+  // Mobile sticky scroll
+  const mobileRef = useRef<HTMLDivElement>(null);
+  const [mobileActive, setMobileActive] = useState(0);
 
   const [activeScreen, setActiveScreen] = useState(0);
 
@@ -52,6 +81,24 @@ export default function HeroProcessFlow() {
     target: containerRef,
     offset: ["start start", "end end"],
   });
+
+  // === Mobile sticky scroll progress ===
+  // Drives the screen swap + caption swap on mobile/tablet only.
+  const { scrollYProgress: mobileProgress } = useScroll({
+    target: mobileRef,
+    offset: ["start start", "end end"],
+  });
+
+  useEffect(() => {
+    const unsubscribe = mobileProgress.on("change", (latest) => {
+      let next = 0;
+      if (latest >= 0.78) next = 3;
+      else if (latest >= 0.54) next = 2;
+      else if (latest >= 0.28) next = 1;
+      setMobileActive((current) => (current === next ? current : next));
+    });
+    return unsubscribe;
+  }, [mobileProgress]);
 
   // === Hero animation ===
   // All 3 phones start same size, side-by-side (with slight overlap).
@@ -360,38 +407,64 @@ export default function HeroProcessFlow() {
         </div>
       </div>
 
-      {/* === MOBILE / TABLET FALLBACK ===
-       * No sticky, no side phones. Center phone + each step stacked vertically.
+      {/* === MOBILE / TABLET — sticky single phone with synced screen + caption swap ===
+       * One phone stays glued to the top of the viewport while the user scrolls.
+       * The screen inside swaps between Dashboard → Archetype → Protocol → Rank,
+       * and the caption text below the phone slides horizontally on each swap.
+       * Driven entirely by `mobileProgress` (a useScroll on the outer container).
        */}
-      <div className="lg:hidden">
-        {/* Single hero phone */}
-        <div className="relative z-10 mt-2 mb-20 flex items-center justify-center">
-          <div className="w-[230px]">
+      <div
+        ref={mobileRef}
+        className="lg:hidden relative"
+        style={{ minHeight: "320vh" }}
+      >
+        <div className="sticky top-20 flex flex-col items-center pt-2 pointer-events-none">
+          {/* Single phone — screen swaps via AnimatePresence */}
+          <div className="relative w-[180px] xs:w-[195px] sm:w-[215px] will-change-transform">
             <PhoneMockup>
-              <DashboardScreen device="phone" />
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={mobileActive}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.4, ease: "easeOut" }}
+                  className="absolute inset-0 will-change-transform"
+                >
+                  {mobileActive === 0 && <DashboardScreen device="phone" />}
+                  {mobileActive === 1 && <ArchetypeScreen />}
+                  {mobileActive === 2 && <ProtocolScreen />}
+                  {mobileActive === 3 && <RankScreen />}
+                </motion.div>
+              </AnimatePresence>
             </PhoneMockup>
           </div>
-        </div>
 
-        {/* Stacked steps */}
-        <div className="container-titan py-16">
-          <div className="flex flex-col gap-24">
-            {steps.map((step, i) => {
-              const Screen = [ArchetypeScreen, ProtocolScreen, RankScreen][i];
-              return (
-                <div
-                  key={step.num}
-                  className="flex flex-col items-center gap-10 text-center"
+          {/* Caption — slides in from the right, exits to the left */}
+          <div className="relative mt-7 h-[170px] w-full overflow-hidden">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={mobileActive}
+                initial={{ opacity: 0, x: 60 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -60 }}
+                transition={{ duration: 0.55, ease: titanEase }}
+                className="absolute inset-x-6 text-center will-change-transform pointer-events-auto"
+              >
+                <p
+                  className="font-sans text-[12px] font-semibold text-white/45"
+                  style={{ letterSpacing: "0.08em" }}
                 >
-                  <StepText step={step} centered />
-                  <div className="w-[230px] md:w-[260px]">
-                    <PhoneMockup>
-                      <Screen />
-                    </PhoneMockup>
-                  </div>
-                </div>
-              );
-            })}
+                  {mobileSteps[mobileActive].label}
+                </p>
+                <h2 className="mt-3 heading-section text-white text-[24px] xs:text-[28px]">
+                  {mobileSteps[mobileActive].title}
+                </h2>
+                <p className="mt-3 text-[14px] leading-[1.6] text-white/60">
+                  {mobileSteps[mobileActive].body}
+                </p>
+              </motion.div>
+            </AnimatePresence>
           </div>
         </div>
       </div>
