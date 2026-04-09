@@ -36,31 +36,6 @@ const steps = [
   },
 ];
 
-// Mobile-only caption deck — same content as desktop steps, plus an "OS"
-// intro state shown while the dashboard mockup is on screen.
-const mobileSteps = [
-  {
-    label: "TITAN OS",
-    title: "Your performance OS.",
-    body: "Four engines — Body, Mind, Money, Charisma. One Titan Score that captures every day across them all.",
-  },
-  {
-    label: "STEP 01",
-    title: "Select your identity",
-    body: "Eight archetypes calibrate the scoring system to match the kind of year you're trying to build.",
-  },
-  {
-    label: "STEP 02",
-    title: "Run the daily protocol",
-    body: "Morning sets your intention. Evening reveals your Titan Score. Every day is scored — no days off.",
-  },
-  {
-    label: "STEP 03",
-    title: "Ascend the ranks",
-    body: "Eight tiers from Initiate to Titan. Your rank reflects consistency and average score over time.",
-  },
-];
-
 export default function HeroProcessFlow() {
   const router = useRouter();
   const containerRef = useRef<HTMLElement>(null);
@@ -68,10 +43,6 @@ export default function HeroProcessFlow() {
   const step1Ref = useRef<HTMLDivElement>(null);
   const step2Ref = useRef<HTMLDivElement>(null);
   const step3Ref = useRef<HTMLDivElement>(null);
-
-  // Mobile sticky scroll
-  const mobileRef = useRef<HTMLDivElement>(null);
-  const [mobileActive, setMobileActive] = useState(0);
 
   const [activeScreen, setActiveScreen] = useState(0);
 
@@ -81,27 +52,6 @@ export default function HeroProcessFlow() {
     target: containerRef,
     offset: ["start start", "end end"],
   });
-
-  // === Mobile sticky scroll progress ===
-  // Drives the screen swap + caption swap on mobile/tablet only.
-  // The container is 480vh tall so scrollable distance ≈ 380vh, giving ~95vh
-  // per state. A normal mobile fling can't blow through all 4 states at once.
-  const { scrollYProgress: mobileProgress } = useScroll({
-    target: mobileRef,
-    offset: ["start start", "end end"],
-  });
-
-  useEffect(() => {
-    const unsubscribe = mobileProgress.on("change", (latest) => {
-      // Clean quartile splits — each state owns exactly 25% of the runway.
-      let next = 0;
-      if (latest >= 0.75) next = 3;
-      else if (latest >= 0.5) next = 2;
-      else if (latest >= 0.25) next = 1;
-      setMobileActive((current) => (current === next ? current : next));
-    });
-    return unsubscribe;
-  }, [mobileProgress]);
 
   // === Hero animation ===
   // All 3 phones start same size, side-by-side (with slight overlap).
@@ -167,7 +117,8 @@ export default function HeroProcessFlow() {
     <section
       ref={containerRef}
       id="top"
-      className="relative w-full lg:min-h-[440vh]"
+      className="relative w-full"
+      style={{ minHeight: "440vh" }}
     >
       {/* === HERO TEXT — normal flow at top === */}
       <motion.div
@@ -409,71 +360,38 @@ export default function HeroProcessFlow() {
         </div>
       </div>
 
-      {/* === MOBILE / TABLET — sticky single phone with synced screen + caption swap ===
-       *
-       * Design notes (mobile-specific, do NOT mirror desktop):
-       *   - 480vh container → ≈380vh of scrollable runway → ~95vh per state.
-       *     A typical mobile fling (~150vh) advances ~1 state, never the
-       *     whole sequence in one swipe.
-       *   - AnimatePresence WITHOUT mode="wait" → exit + enter overlap, so
-       *     rapid scroll doesn't queue up a stop-and-go animation chain.
-       *   - All transitions use absolute-positioned children inside fixed-
-       *     height parents, so cross-fading layers never cause layout jumps.
-       *   - Sticky element is pointer-events-none so the user can scroll the
-       *     page anywhere on the phone area without intercepting touches.
+      {/* === MOBILE / TABLET FALLBACK ===
+       * No sticky, no side phones. Center phone + each step stacked vertically.
        */}
-      <div
-        ref={mobileRef}
-        className="lg:hidden relative"
-        style={{ minHeight: "480vh" }}
-      >
-        <div className="sticky top-20 flex flex-col items-center pt-2 pointer-events-none">
-          {/* Single phone — screens crossfade via AnimatePresence */}
-          <div className="relative w-[180px] xs:w-[195px] sm:w-[215px] will-change-transform">
+      <div className="lg:hidden">
+        {/* Single hero phone */}
+        <div className="relative z-10 mt-2 mb-20 flex items-center justify-center">
+          <div className="w-[230px]">
             <PhoneMockup>
-              <AnimatePresence>
-                <motion.div
-                  key={mobileActive}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.45, ease: "easeOut" }}
-                  className="absolute inset-0 will-change-transform"
-                >
-                  {mobileActive === 0 && <DashboardScreen device="phone" />}
-                  {mobileActive === 1 && <ArchetypeScreen />}
-                  {mobileActive === 2 && <ProtocolScreen />}
-                  {mobileActive === 3 && <RankScreen />}
-                </motion.div>
-              </AnimatePresence>
+              <DashboardScreen device="phone" />
             </PhoneMockup>
           </div>
+        </div>
 
-          {/* Caption — slides in from the right, exits to the left */}
-          <div className="relative mt-7 h-[180px] w-full overflow-hidden">
-            <AnimatePresence>
-              <motion.div
-                key={mobileActive}
-                initial={{ opacity: 0, x: 60 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -60 }}
-                transition={{ duration: 0.6, ease: titanEase }}
-                className="absolute inset-x-6 text-center will-change-transform"
-              >
-                <p
-                  className="font-sans text-[12px] font-semibold text-white/45"
-                  style={{ letterSpacing: "0.08em" }}
+        {/* Stacked steps */}
+        <div className="container-titan py-16">
+          <div className="flex flex-col gap-24">
+            {steps.map((step, i) => {
+              const Screen = [ArchetypeScreen, ProtocolScreen, RankScreen][i];
+              return (
+                <div
+                  key={step.num}
+                  className="flex flex-col items-center gap-10 text-center"
                 >
-                  {mobileSteps[mobileActive].label}
-                </p>
-                <h2 className="mt-3 heading-section text-white text-[24px] xs:text-[28px]">
-                  {mobileSteps[mobileActive].title}
-                </h2>
-                <p className="mt-3 text-[14px] leading-[1.6] text-white/60">
-                  {mobileSteps[mobileActive].body}
-                </p>
-              </motion.div>
-            </AnimatePresence>
+                  <StepText step={step} centered />
+                  <div className="w-[230px] md:w-[260px]">
+                    <PhoneMockup>
+                      <Screen />
+                    </PhoneMockup>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>
