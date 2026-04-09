@@ -1,129 +1,466 @@
-@import "tailwindcss";
-@import "tw-animate-css";
-@import "shadcn/tailwind.css";
-
-@custom-variant dark (&:is(.dark *));
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-  --color-sidebar-ring: var(--sidebar-ring);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar: var(--sidebar);
-  --color-chart-5: var(--chart-5);
-  --color-chart-4: var(--chart-4);
-  --color-chart-3: var(--chart-3);
-  --color-chart-2: var(--chart-2);
-  --color-chart-1: var(--chart-1);
-  --color-ring: var(--ring);
-  --color-input: var(--input);
-  --color-border: var(--border);
-  --color-destructive: var(--destructive);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-accent: var(--accent);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-muted: var(--muted);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-secondary: var(--secondary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-primary: var(--primary);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-popover: var(--popover);
-  --color-card-foreground: var(--card-foreground);
-  --color-card: var(--card);
-  --radius-sm: calc(var(--radius) * 0.6);
-  --radius-md: calc(var(--radius) * 0.8);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) * 1.4);
-  --radius-2xl: calc(var(--radius) * 1.8);
-  --radius-3xl: calc(var(--radius) * 2.2);
-  --radius-4xl: calc(var(--radius) * 2.6);
-}
-
-:root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.809 0.105 251.813);
-  --chart-2: oklch(0.623 0.214 259.815);
-  --chart-3: oklch(0.546 0.245 262.881);
-  --chart-4: oklch(0.488 0.243 264.376);
-  --chart-5: oklch(0.424 0.199 265.638);
-  --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
-}
-
-.dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.809 0.105 251.813);
-  --chart-2: oklch(0.623 0.214 259.815);
-  --chart-3: oklch(0.546 0.245 262.881);
-  --chart-4: oklch(0.488 0.243 264.376);
-  --chart-5: oklch(0.424 0.199 265.638);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 @layer base {
-  * {
-    @apply border-border outline-ring/50;
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
   }
+
+  html,
   body {
-    @apply bg-background text-foreground font-sans;
+    margin: 0;
+    padding: 0;
+    background: #000000;
+    color: #ffffff;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
+
   html {
-    @apply font-sans;
+    scroll-behavior: smooth;
+    scroll-padding-top: 96px;
+  }
+
+  body {
+    line-height: 1.6;
+    font-family: var(--font-inter), Inter, system-ui, sans-serif;
+    font-feature-settings: "ss01", "cv11";
+  }
+
+  /* `overflow: clip` prevents horizontal scroll without creating a scroll
+   * container — critical because `overflow: hidden` on an ancestor breaks
+   * `position: sticky` for descendants. Wrapped in @supports so Safari 15-
+   * (which doesn't recognize the `clip` value) gracefully falls back to the
+   * default `visible` rather than nothing. */
+  @supports (overflow: clip) {
+    body {
+      overflow-x: clip;
+    }
+  }
+
+  /* === Accessibility: respect prefers-reduced-motion ===
+   * Users with vestibular disorders or motion sensitivity get all
+   * animations and transitions neutralized. The page still functions
+   * fully — just without the parallax / sticky scroll / drift / orbit. */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  ::selection {
+    background: rgba(166, 218, 255, 0.3);
+    color: #ffffff;
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #07070d;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 999px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.16);
+  }
+
+  :focus-visible {
+    outline: 1px solid rgba(166, 218, 255, 0.5);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+}
+
+@layer components {
+  /* === DARK BLACK SURFACE CARD WITH METALLIC OUTLINE ===
+   * Near-pure-black background with a masked gradient pseudo-border that
+   * simulates light catching brushed metal at a 135° angle.
+   *
+   * The ::before uses the padding+mask trick to render only the 1px ring
+   * of the gradient — this gives a real gradient border that respects the
+   * 16px radius (regular CSS borders can't be gradients).
+   */
+  .surface-card {
+    position: relative;
+    background: rgba(4, 4, 7, 0.88);
+    border: 1px solid transparent;
+    border-radius: 16px;
+    transition:
+      transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+      box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+      background-color 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform;
+  }
+
+  /* Metallic gradient border ring */
+  .surface-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.22) 0%,
+      rgba(255, 255, 255, 0.05) 22%,
+      rgba(255, 255, 255, 0.18) 45%,
+      rgba(255, 255, 255, 0.04) 70%,
+      rgba(255, 255, 255, 0.16) 100%
+    );
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    transition: background 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .surface-card-hover:hover {
+    transform: translateY(-4px);
+    background: rgba(8, 8, 12, 0.92);
+    box-shadow:
+      0 24px 60px -16px rgba(0, 0, 0, 0.7),
+      0 8px 24px -12px rgba(0, 0, 0, 0.55);
+  }
+
+  /* Brighter metallic edge on hover — light catches harder */
+  .surface-card-hover:hover::before {
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.32) 0%,
+      rgba(255, 255, 255, 0.08) 22%,
+      rgba(255, 255, 255, 0.28) 45%,
+      rgba(255, 255, 255, 0.06) 70%,
+      rgba(255, 255, 255, 0.24) 100%
+    );
+  }
+
+  /* === GPU-friendly float — runs on the compositor === */
+  @keyframes phoneFloat {
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0);
+    }
+    50% {
+      transform: translate3d(0, -8px, 0);
+    }
+  }
+
+  .phone-float {
+    animation: phoneFloat 5s ease-in-out infinite;
+    will-change: transform;
+  }
+
+  /* === GPU-friendly marquee === */
+  @keyframes marqueeX {
+    0% {
+      transform: translate3d(0, 0, 0);
+    }
+    100% {
+      transform: translate3d(-50%, 0, 0);
+    }
+  }
+
+  .marquee-x {
+    animation: marqueeX 45s linear infinite;
+    will-change: transform;
+  }
+
+  .marquee-x-fast {
+    animation: marqueeX 60s linear infinite;
+    will-change: transform;
+  }
+
+  /* === Hero background image — mobile dampening ===
+   * Inline opacity is set via Framer Motion (0.3 → 0 on scroll); on mobile
+   * we multiply that down with a CSS variable applied via class so the
+   * abstract texture isn't overwhelming on small screens.
+   */
+  @media (max-width: 767px) {
+    .hero-bg-image {
+      filter: brightness(0.66);
+    }
+  }
+
+  /* SVG noise overlay for the global ScrollBackground */
+  .scroll-bg-noise {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.92' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 220px 220px;
+    mix-blend-mode: overlay;
+  }
+
+  /* Soft gradient for hero secondary text — white → 70% white */
+  .text-gradient-soft {
+    background: linear-gradient(180deg, #ffffff 0%, rgba(255, 255, 255, 0.7) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+
+  /* Champagne metallic gradient text — used on pricing only */
+  .text-champagne {
+    background: linear-gradient(180deg, #e8d8b8 0%, #c9b99a 50%, #9a8a6a 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+
+  /* === HEADING DISPLAY ===
+   * Inter, bold, tight. The only typographic voice on the page.
+   */
+  .heading-display {
+    font-family: var(--font-inter), Inter, system-ui, sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+  }
+
+  .heading-section {
+    font-family: var(--font-inter), Inter, system-ui, sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    line-height: 1.1;
+  }
+
+  /* === PHONE FRAME ===
+   * Premium dark phone with subtle gradient bezel + dynamic island.
+   * 40px outer radius, 36px inner — exception to 4px max (real device).
+   */
+  .phone-frame {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 9 / 19.5;
+    border-radius: 40px;
+    padding: 6px;
+    background: linear-gradient(160deg, #1c1c20 0%, #141418 50%, #1a1a1e 100%);
+    box-shadow:
+      0 25px 60px rgba(0, 0, 0, 0.5),
+      0 10px 30px rgba(0, 0, 0, 0.35),
+      0 0 0 1px rgba(255, 255, 255, 0.06),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.04),
+      inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  }
+
+  /* Outer bezel highlight */
+  .phone-frame::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: 41px;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.14) 0%,
+      rgba(255, 255, 255, 0.02) 30%,
+      rgba(255, 255, 255, 0.14) 60%,
+      rgba(255, 255, 255, 0.02) 100%
+    );
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  /* Dynamic island */
+  .phone-frame::after {
+    content: "";
+    position: absolute;
+    top: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90px;
+    height: 22px;
+    background: #000;
+    border-radius: 999px;
+    z-index: 5;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+  }
+
+  .phone-screen {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 36px;
+    background: #000;
+    overflow: hidden;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+  }
+
+  /* === LAPTOP FRAME ===
+   * Open MacBook silhouette: bezel + screen + hinge + a wider base plate
+   * with a trackpad hint. Designed to read as a real laptop at small sizes.
+   */
+  .laptop-wrapper {
+    position: relative;
+    width: 100%;
+  }
+
+  /* Outer screen lid — bezel + camera dot */
+  .laptop-screen {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    border-radius: 14px;
+    padding: 14px 14px 16px;
+    background: linear-gradient(180deg, #2a2a2e 0%, #18181c 50%, #121216 100%);
+    box-shadow:
+      0 36px 90px rgba(0, 0, 0, 0.62),
+      0 14px 34px rgba(0, 0, 0, 0.45),
+      0 0 0 1px rgba(255, 255, 255, 0.1),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.05),
+      inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  }
+
+  /* Metallic edge highlight */
+  .laptop-screen::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: 15px;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.18) 0%,
+      rgba(255, 255, 255, 0.03) 30%,
+      rgba(255, 255, 255, 0.16) 60%,
+      rgba(255, 255, 255, 0.02) 100%
+    );
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  /* Front camera */
+  .laptop-screen::after {
+    content: "";
+    position: absolute;
+    top: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 5px;
+    height: 5px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.18);
+    box-shadow: inset 0 0 0 0.5px rgba(0, 0, 0, 0.6);
+  }
+
+  .laptop-display {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    background: #000;
+    overflow: hidden;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+  }
+
+  /* Base plate — wider than the screen to suggest the open laptop body.
+   * The hinge appears as a darker strip at the very top of the base. */
+  .laptop-base {
+    position: relative;
+    margin: 0 auto;
+    width: 116%;
+    height: 18px;
+    background:
+      linear-gradient(180deg, rgba(0, 0, 0, 0.55) 0px, rgba(0, 0, 0, 0) 2px),
+      linear-gradient(180deg, #2a2a2e 0%, #18181c 30%, #0c0c10 100%);
+    border-radius: 0 0 18px 18px;
+    box-shadow:
+      0 16px 36px rgba(0, 0, 0, 0.6),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1),
+      inset 0 -1px 0 rgba(255, 255, 255, 0.04);
+  }
+
+  /* Trackpad / palm-rest hint */
+  .laptop-base::after {
+    content: "";
+    position: absolute;
+    top: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 32%;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 4px;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+  }
+
+  /* === SCREENSHOT PLACEHOLDER === */
+  .screenshot-placeholder {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background:
+      radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.04) 0%, transparent 60%),
+      linear-gradient(180deg, #0a0a0e 0%, #060608 100%);
+  }
+
+  .screenshot-placeholder::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 16px 16px;
+    -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, #000 40%, transparent 80%);
+    mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, #000 40%, transparent 80%);
+    opacity: 0.5;
+    pointer-events: none;
+  }
+}
+
+@layer utilities {
+  .container-titan {
+    width: 100%;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  .container-narrow {
+    width: 100%;
+    max-width: 1024px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  @media (min-width: 768px) {
+    .container-titan,
+    .container-narrow {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .mask-fade-edges {
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      #000 8%,
+      #000 92%,
+      transparent 100%
+    );
+    mask-image: linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%);
   }
 }

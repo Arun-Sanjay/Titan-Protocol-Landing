@@ -3,12 +3,8 @@
 # dependencies
 /node_modules
 /.pnp
-.pnp.*
-.yarn/*
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/versions
+.pnp.js
+.yarn/install-state.gz
 
 # testing
 /coverage
@@ -28,10 +24,13 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-.pnpm-debug.log*
 
-# env files (can opt-in for committing if needed)
-.env*
+# local env files
+.env*.local
+
+# private installer binaries — never commit
+/private/
+/Titan Protocol OS/
 
 # vercel
 .vercel
@@ -39,3 +38,22 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# === local-only assets (not needed for Vercel) ===
+# Visual / video reference dumps
+/black reference/
+/blues_reference/
+/current ss/
+/reference video/
+/references images/
+
+# Old landing project remnants
+/Titan-Protocol-Landing-main-Desktop copy/
+
+# Internal docs / scratch notes
+/TITAN_PROTOCOL.md
+/SKILL.md
+
+# Editor / OS junk
+/.claude/
+.DS_Store
